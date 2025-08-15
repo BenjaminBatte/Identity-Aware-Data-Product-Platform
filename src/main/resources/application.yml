@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/platformdb
+    username: postgres
+    password: 2020
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate   # use 'update' in dev if you want auto schema changes
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+    show-sql: true
+
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@localhost:27017/admin   # adjust if you run mongo
+    redis:
+      host: localhost
+      port: 6379
+
+  quartz:
+    job-store-type: memory
+
+server:
+  port: 9190
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+
+#
