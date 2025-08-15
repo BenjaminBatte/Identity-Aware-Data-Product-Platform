@@ -1,1 +1,1 @@
-# Identity-Aware-Data-Product-Platform
+https://benjaminbatte.github.io/Identity-Aware-Data-Product-Platform/
