@@ -2,10 +2,10 @@
 ## title: Architecture
 ---
 # Architecture
-
-This document summarizes the current system architecture for the **Identity‑Aware Data Product Platform** backend and the planned Angular admin frontend. It will evolve as we implement features.
-
 ---
+This document summarizes the current system architecture for the **Identity‑Aware Data Product Platform** backend and the planned Angular admin frontend. It will evolve as we implement features.
+---
+
 ## Class Diagram (initial domain)
 
 ![Domain Class Diagram](https://raw.githubusercontent.com/BenjaminBatte/platform-api/main/docs/diagrams/domain.png)
@@ -61,14 +61,14 @@ platform-api/
 
 ### Create Dataset
 
-![Create Dataset Sequence](https://raw.githubusercontent.com/BenjaminBatte/platform-api/main/docs/diagrams/create_dataset.png)
+![Create Dataset Sequence](https://benjaminbatte.github.io/platform-api/diagrams/create_dataset.png)
 
 ### ML Forecast
 
-![ML Forecast Sequence](https://raw.githubusercontent.com/BenjaminBatte/platform-api/main/docs/diagrams/ml_forecast.png)
+![ML Forecast Sequence](https://benjaminbatte.github.io/platform-api/diagrams/ml_forecast.png)
 
 ### Run Profiling Job
 
-![Run Profiling Job Sequence](https://raw.githubusercontent.com/BenjaminBatte/platform-api/main/docs/diagrams/run_profilling_job.png)
+![Run Profiling Job Sequence](https://benjaminbatte.github.io/platform-api/diagrams/run_profilling_job.png)
 
----
+
