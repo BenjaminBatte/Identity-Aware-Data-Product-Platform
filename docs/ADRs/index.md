@@ -4,7 +4,7 @@
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 # 🔐 Identity-Aware Data Product Platform
 
@@ -52,10 +52,41 @@
 
 ---
 
+## 📝 ADRs (Architecture Decision Records)
+
+Architecture Decision Records (ADRs) capture the context, decision, and consequences of significant choices made during system design.
+
+### Current ADRs
+
+* [ADR-001: Use Keycloak for IAM](ADRs/ADR-001-use-keycloak.md)
+* [ADR-002: Polyglot Persistence (Postgres + MongoDB)](ADRs/ADR-002-polyglot-persistence.md)
+* [ADR-003: Adopt Spring Boot + Angular Stack](ADRs/ADR-003-spring-boot-angular.md)
+* [ADR-004: Event-Driven Jobs with Kafka](ADRs/ADR-004-kafka-jobs.md)
+* [ADR-005: ML Integration with ONNX/Tribuo](ADRs/ADR-005-ml-integration.md)
+
+### Template
+
+Each ADR follows this format:
+
+```md
+# ADR-NNN: Title
+
+## Context
+Why do we need to make this decision?
+
+## Decision
+What option did we choose?
+
+## Consequences
+What are the implications (positive and negative)?
+```
+
+---
+
 [**Get Started** → Setup Guide](setup.md)
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 <sub>© 2025 Identity-Aware Data Product Platform • [GitHub Repo](https://github.com/BenjaminBatte/platform-api)</sub>
