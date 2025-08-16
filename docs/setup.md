@@ -4,6 +4,8 @@
 
 ---
 
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams/) | [📝 Changelog](CHANGELOG.md)
+
 # Setup
 
 This page explains how to run the **Identity‑Aware Data Product Platform** on your laptop (Docker Compose for infra, Spring Boot backend, Angular 18 admin UI) and how to prepare it for production builds.
@@ -159,3 +161,7 @@ lsof -i :8080 -i :8081 -i :4200 || true
 
 * **Happy Path:** Use Express Setup or TL;DR Quickstart with defaults, ideal for evaluation and demos.
 * **Customization Path:** Manually configure Keycloak, tweak DB credentials, override ports, or adapt Helm charts for production clusters.
+
+---
+
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams/) | [📝 Changelog](CHANGELOG.md)
