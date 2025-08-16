@@ -4,7 +4,7 @@
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 # 🔐 Identity-Aware Data Product Platform
 
@@ -37,7 +37,7 @@
 ### Reference
 
 * [Changelog](CHANGELOG.md) - Version history
-* [ADRs](ADRs/) - Architectural Decision Records
+* [ADRs](ADRs/index.md) - Architectural Decision Records
 
 ---
 
@@ -87,6 +87,6 @@ What are the implications (positive and negative)?
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 <sub>© 2025 Identity-Aware Data Product Platform • [GitHub Repo](https://github.com/BenjaminBatte/platform-api)</sub>

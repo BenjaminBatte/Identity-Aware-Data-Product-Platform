@@ -4,15 +4,15 @@
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 # Diagrams
 
-This page collects visual representations of the **Identity‑Aware Data Product Platform** architecture and workflows.
+This page collects visual representations of the **Identity-Aware Data Product Platform** architecture and workflows.
 
 ---
 
-## 1) High‑Level System Architecture
+## 1) High-Level System Architecture
 
 ![System Architecture](diagrams/system-architecture.png)
 
@@ -33,7 +33,7 @@ This page collects visual representations of the **Identity‑Aware Data Product
 
 **Notes:**
 
-* `UserOrgRole` enables multi‑tenancy
+* `UserOrgRole` enables multi-tenancy
 * `DatasetProfileRef` bridges Postgres ↔ Mongo
 
 ---
@@ -65,7 +65,7 @@ This page collects visual representations of the **Identity‑Aware Data Product
 ## 5) Future Diagrams
 
 * Sequence diagram for dataset profiling job lifecycle
-* Swimlane diagram for multi‑tenancy access flows
+* Swimlane diagram for multi-tenancy access flows
 
 ---
 

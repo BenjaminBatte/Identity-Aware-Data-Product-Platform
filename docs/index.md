@@ -37,7 +37,7 @@
 ### Reference
 
 * [Changelog](CHANGELOG.md) - Version history
-* [ADRs](ADRs/) - Architectural Decision Records
+* [ADRs](ADRs/index.md) - Architectural Decision Records
 
 ---
 
