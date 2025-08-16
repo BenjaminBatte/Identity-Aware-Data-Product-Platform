@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.benjaminbatte</groupId>
-	<artifactId>platfom-api</artifactId>
+	<artifactId>platform-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>platfom-api</name>
 	<description>Identity-aware data product platform (datasets, jobs, ML-ready) — Spring Boot backend</description>
