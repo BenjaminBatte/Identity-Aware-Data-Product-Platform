@@ -1,7 +1,3 @@
-It looks like you’ve pasted the **ml-module.md** file content, but the open canvas is currently showing **Diagrams.md**. To avoid confusion, I can replace the content of this canvas with the full, corrected **ml-module.md** file you shared so that it’s consistent with your other docs and has the correct ADR links.
-
-Here’s the updated file:
-
 ---
 
 ## title: ML Module
