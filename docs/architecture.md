@@ -1,8 +1,15 @@
 ---
-title: Architecture
+
+## title: Architecture
+
 ---
 
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+
+# Architecture
+
 This document summarizes the current system architecture for the **Identity‑Aware Data Product Platform** backend and the planned Angular admin frontend. It will evolve as we implement features.
+
 ---
 
 ## Class Diagram (initial domain)
@@ -25,9 +32,9 @@ platform-api/
 ├─ HELP.md
 ├─ docs/
 │  ├─ architecture.md               # this file
-│  ├─ api-specs.md                  # (planned) REST endpoints / OpenAPI notes
-│  ├─ security.md                   # (planned) IAM flow and roles
-│  ├─ setup.md                      # (planned) local dev & deploy
+│  ├─ api-specs.md                  # REST endpoints / OpenAPI notes
+│  ├─ security.md                   # IAM flow and roles
+│  ├─ setup.md                      # local dev & deploy
 │  └─ diagrams/                     # PNG/SVG exports and .mmd sources
 │
 └─ src/
@@ -38,7 +45,7 @@ platform-api/
    │  └─ java/com/benjaminbatte/platform/
    │     ├─ PlatformApiApplication.java
    │     ├─ config/                 # CORS, Jackson, Problem+JSON, etc.
-   │     ├─ security/               # (planned) JWT resource server, method security
+   │     ├─ security/               # JWT resource server, method security
    │     ├─ domain/                 # JPA entities (Dataset, DatasetVersion, ...)
    │     ├─ dto/                    # request/response records
    │     ├─ repository/             # Spring Data JPA repositories
@@ -70,4 +77,6 @@ platform-api/
 
 ![Run Profiling Job Sequence](diagrams/run_profilling_job.png)
 
+---
 
+[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
