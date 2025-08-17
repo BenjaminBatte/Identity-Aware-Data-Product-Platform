@@ -4,7 +4,7 @@
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md) | [📖 Overview](overview.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
 
 # Architecture
 
@@ -27,44 +27,42 @@ This document summarizes the current system architecture for the **Identity‑Aw
 
 ```text
 platform-api/
-├─ pom.xml
-├─ mvnw / mvnw.cmd
-├─ HELP.md
-├─ docs/
-│  ├─ architecture.md               # this file
-│  ├─ api-specs.md                  # REST endpoints / OpenAPI notes
-│  ├─ security.md                   # IAM flow and roles
-│  ├─ setup.md                      # local dev & deploy
-│  └─ diagrams/                     # PNG/SVG exports and .mmd sources
-│
-└─ src/
-   ├─ main/
-   │  ├─ resources/
-   │  │  ├─ application.yml         # datasource, JPA, redis/mongo configs
-   │  │  └─ db/migration/           # Flyway migrations (V1__init.sql, …)
-   │  └─ java/com/benjaminbatte/platform/
-   │     ├─ PlatformApiApplication.java
-   │     ├─ common/exception/       # GlobalExceptionHandler, custom errors
-   │     ├─ config/                 # CORS, Jackson, Problem+JSON, etc.
-   │     ├─ features/               # Feature-based modules
-   │     │  ├─ dataset/
-   │     │  │  ├─ domain/           # JPA entities
-   │     │  │  ├─ dto/              # request/response DTOs
-   │     │  │  ├─ mapper/           # MapStruct mappers
-   │     │  │  ├─ repo/             # Spring Data JPA repos
-   │     │  │  ├─ service/          # Service interfaces
-   │     │  │  │  └─ impl/          # Service implementations
-   │     │  │  └─ web/              # REST controllers
-   │     │  ├─ org/                 # Orgs & roles
-   │     │  └─ user/                # Users & auth
-   │     ├─ jobs/                   # Quartz jobs
-   │     ├─ metadata/               # Mongo docs/repos (profiles, checks)
-   │     ├─ ml/                     # ML/analytics adapters
-   │     └─ security/               # OAuth2/JWT resource server
-   │
-   └─ test/
-      └─ java/com/benjaminbatte/platform/
-         └─ PlatformApiApplicationTests.java
+├── src/main/java/com/benjaminbatte/platform
+│   ├── common/                   # Shared utilities & cross-cutting concerns
+│   │   └── exception/            # Global exception handling
+│   ├── config/                   # Spring Boot configuration classes
+│   ├── security/                 # Authentication & authorization (Keycloak, JWT)
+│   ├── features/                 # Domain feature modules
+│   │   ├── dataset/              # Dataset management
+│   │   │   ├── domain/           # JPA entities
+│   │   │   ├── dto/              # Data transfer objects
+│   │   │   ├── mapper/           # DTO ↔ Entity mapping
+│   │   │   ├── repo/             # Data repositories
+│   │   │   ├── service/          # Business logic
+│   │   │   └── web/              # REST controllers
+│   │   ├── org/                  # Organization management
+│   │   │   ├── domain/
+│   │   │   ├── dto/
+│   │   │   ├── mapper/
+│   │   │   ├── repo/
+│   │   │   ├── service/
+│   │   │   └── web/
+│   │   └── user/                 # User management
+│   │       ├── domain/
+│   │       ├── dto/
+│   │       ├── mapper/
+│   │       ├── repo/
+│   │       ├── service/
+│   │       └── web/
+│   ├── jobs/                     # Scheduled/background jobs
+│   ├── metadata/                 # Document & metadata storage
+│   └── ml/                       # ML integration (forecasting, anomaly detection)
+├── src/main/resources/
+│   ├── application.yml           # Spring Boot configuration
+│   ├── db/migration/             # Flyway database migrations
+│   └── static/                   # (optional) static assets
+└── src/test/java/                # Unit & integration tests
+    └── com/benjaminbatte/platform
 
 ```
 
@@ -86,4 +84,4 @@ platform-api/
 
 ---
 
-[🏠 Home](index.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
+[🏠 Home](index.md)| [📖 Overview](overview.md) | [⚙ Setup](setup.md) | [📐 Architecture](architecture.md) | [📜 ADRs](ADRs/index.md) | [🔒 Security](security.md) | [📊 API Specs](api-specs.md) | [🤖 ML Module](ml-module.md) | [🖼 Diagrams](diagrams.md) | [📝 Changelog](CHANGELOG.md)
