@@ -40,25 +40,32 @@ platform-api/
 └─ src/
    ├─ main/
    │  ├─ resources/
-   │  │  ├─ application.yml         # datasource, JPA, (optional) mongo disable
-   │  │  └─ db/migration/           # Flyway migrations (e.g., V1__init.sql)
+   │  │  ├─ application.yml         # datasource, JPA, redis/mongo configs
+   │  │  └─ db/migration/           # Flyway migrations (V1__init.sql, …)
    │  └─ java/com/benjaminbatte/platform/
    │     ├─ PlatformApiApplication.java
+   │     ├─ common/exception/       # GlobalExceptionHandler, custom errors
    │     ├─ config/                 # CORS, Jackson, Problem+JSON, etc.
-   │     ├─ security/               # JWT resource server, method security
-   │     ├─ domain/                 # JPA entities (Dataset, DatasetVersion, ...)
-   │     ├─ dto/                    # request/response records
-   │     ├─ repository/             # Spring Data JPA repositories
-   │     ├─ service/                # transactional business services
-   │     ├─ web/                    # REST controllers
-   │     ├─ mapper/                 # (optional) MapStruct mappers
-   │     ├─ jobs/                   # Quartz jobs & schedulers
+   │     ├─ features/               # Feature-based modules
+   │     │  ├─ dataset/
+   │     │  │  ├─ domain/           # JPA entities
+   │     │  │  ├─ dto/              # request/response DTOs
+   │     │  │  ├─ mapper/           # MapStruct mappers
+   │     │  │  ├─ repo/             # Spring Data JPA repos
+   │     │  │  ├─ service/          # Service interfaces
+   │     │  │  │  └─ impl/          # Service implementations
+   │     │  │  └─ web/              # REST controllers
+   │     │  ├─ org/                 # Orgs & roles
+   │     │  └─ user/                # Users & auth
+   │     ├─ jobs/                   # Quartz jobs
    │     ├─ metadata/               # Mongo docs/repos (profiles, checks)
-   │     └─ ml/                     # ONNX/Tribuo adapters & facades
+   │     ├─ ml/                     # ML/analytics adapters
+   │     └─ security/               # OAuth2/JWT resource server
    │
    └─ test/
       └─ java/com/benjaminbatte/platform/
          └─ PlatformApiApplicationTests.java
+
 ```
 
 ---
