@@ -1,4 +1,4 @@
-package com.benjaminbatte.platform.features.user.service;
+package com.benjaminbatte.platform.features.user.service.impl;
 
 import com.benjaminbatte.platform.features.user.domain.User;
 import com.benjaminbatte.platform.features.user.repo.UserRepository;
