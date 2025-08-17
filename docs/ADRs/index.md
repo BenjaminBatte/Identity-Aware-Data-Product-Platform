@@ -4,9 +4,9 @@
 
 ---
 
-[🏠 Home](../index.md) | [📐 Architecture](../architecture.md) | [📊 API Specs](../api-specs.md) | [🔒 Security](../security.md) | [⚙ Setup](../setup.md) | [🤖 ML Module](../ml-module.md) | [🖼 Diagrams](../diagrams.md) | [📝 Changelog](../CHANGELOG.md)
+[🏠 Home](../index.md) | [📖 Overview](../overview.md) | [⚙ Setup](../setup.md) | [📐 Architecture](../architecture.md) | [🔒 Security](../security.md) | [📊 API Specs](../api-specs.md) | [🤖 ML Module](../ml-module.md) | [🖼 Diagrams](../diagrams.md) | [📝 Changelog](../CHANGELOG.md)
 
-# Architecture Decision Records (ADRs)
+# 📜 Architecture Decision Records (ADRs)
 
 ADRs document significant architectural decisions: **context**, **decision**, and **consequences**. This page is the landing page for ADRs only (the site home is at `../index.md`).
 
@@ -41,3 +41,7 @@ What we chose and key rationale.
 ## Consequences
 Positive/negative outcomes, operational impact, migrations.
 ```
+
+[🏠 Home](../index.md) | [📖 Overview](../overview.md) | [⚙ Setup](../setup.md) | [📐 Architecture](../architecture.md) | [🔒 Security](../security.md) | [📊 API Specs](../api-specs.md) | [🤖 ML Module](../ml-module.md) | [🖼 Diagrams](../diagrams.md) | [📝 Changelog](../CHANGELOG.md)
+
+<sub>© 2025 Identity-Aware Data Product Platform • [GitHub Repo](https://github.com/BenjaminBatte/platform-api)</sub>
