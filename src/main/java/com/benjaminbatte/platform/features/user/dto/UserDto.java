@@ -17,4 +17,5 @@ public class UserDto {
     Set<UUID> orgIds;
     Instant createdAt;
     Instant updatedAt;
+    boolean isActive;
 }

@@ -21,7 +21,7 @@ import java.util.UUID;
 public class DatasetController {
 
     private final DatasetService datasetService;
-    private final UserRepository userRepo;
+    private final UserRepository userRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -34,7 +34,7 @@ public class DatasetController {
             email = jwt.getClaimAsString("preferred_username");
         }
         String finalEmail = email;
-        var user = userRepo.findByEmail(email)
+        var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not registered: " + finalEmail));
 
         DatasetDto dto = datasetService.create(req, user.getId());

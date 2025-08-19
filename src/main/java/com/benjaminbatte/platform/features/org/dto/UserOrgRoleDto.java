@@ -1,10 +1,9 @@
 package com.benjaminbatte.platform.features.org.dto;
 
 import com.benjaminbatte.platform.features.org.domain.Role;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Value;
-
-import java.util.UUID;
 
 @Value
 @Builder

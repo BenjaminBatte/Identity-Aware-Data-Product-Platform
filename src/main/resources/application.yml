@@ -1,27 +1,208 @@
 spring:
+  application:
+    name: platform-api # Application name, used in logs/metrics/tracing
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/platformdb
-    username: postgres
-    password: "2020"
-    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/platformdb} # Database URL (env overrideable)
+    username: ${DB_USER:postgres} # Database username
+    password: ${DB_PASSWORD:2020} # Database password
+    driver-class-name: org.postgresql.Driver # JDBC driver for Postgres
+    hikari: # HikariCP connection pool tuning
+      maximum-pool-size: 10 # Max connections in pool
+      minimum-idle: 2 # Min idle connections
+      connection-timeout: 30000 # Max wait for connection (ms)
+      idle-timeout: 600000 # Idle connection lifetime (ms)
+      max-lifetime: 1800000 # Max lifetime of a connection (ms)
+
+  flyway:
+    locations: classpath:db/migration # Migration scripts location
+    user: ${DB_USER:postgres} # Flyway DB user
+    password: ${DB_PASSWORD:2020} # Flyway DB password
+    baseline-on-migrate: true # Baseline existing DB if needed
+    validate-on-migrate: true # Validate migrations against schema
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate # Validates schema, doesn’t auto-update (safe for prod)
     properties:
-      hibernate.format_sql: true
-      hibernate.jdbc.lob.non_contextual_creation: true
-    open-in-view: false
-    show-sql: true
+      hibernate:
+        format_sql: true # Pretty-print SQL in logs
+        jdbc.lob.non_contextual_creation: true # Better LOB handling
+        jdbc.time_zone: UTC # Standardize timestamps to UTC
+        dialect: org.hibernate.dialect.PostgreSQLDialect # SQL dialect for Postgres
+    open-in-view: false # Disable Open Session in View (better perf/security)
 
-  quartz:
-    job-store-type: memory
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI:http://localhost:8080/realms/master} # Keycloak/IdP JWT issuer
+
+  data:
+    redis:
+      repositories:
+        enabled: false # Disable Spring Data Redis repos (manual use only)
+
+  cache:
+    type: redis # Use Redis for caching
+    redis:
+      time-to-live: 600000 # Cache TTL = 10 min
+      cache-null-values: false # Do not cache nulls
+
+  # Thread pools for async tasks and schedulers
+  task:
+    execution:
+      pool:
+        core-size: 5 # Core worker threads
+        max-size: 10 # Max worker threads
+        queue-capacity: 100 # Max queued tasks
+    scheduling:
+      pool:
+        size: 5 # Scheduled tasks thread pool size
 
 server:
-  port: 9190
+  port: ${PORT:9190} # API server port
+  forward-headers-strategy: framework # Handle proxy headers (X-Forwarded-*)
+  compression: # Enable gzip compression
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024 # Compress responses larger than 1KB
+  servlet:
+    context-path: /api # All endpoints under /api
+
+# Logging configuration
+logging:
+  level:
+    root: INFO # Default log level
+    com.benjaminbatte.platform: DEBUG # App package logs
+    org.springframework.web: INFO # Web logs
+    org.hibernate.SQL: WARN # SQL logs (DEBUG in dev, WARN in prod)
+    org.hibernate.type: TRACE # Log binding params (optional, verbose)
+    org.springframework.security: INFO # Security logs
+    org.springframework.cache: DEBUG # Cache logs
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n [traceId=%X{traceId}, spanId=%X{spanId}]" # Console log format
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n [traceId=%X{traceId}, spanId=%X{spanId}]" # File log format
+  file:
+    name: logs/application.log # Log file location
+  logback:
+    rollingpolicy: # Log rotation policy
+      max-file-size: 10MB # Max per log file
+      max-history: 30 # Keep last 30 files
+
+# Actuator endpoints (for monitoring/observability)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env,loggers,prometheus # Expose these endpoints
+      base-path: /manage # Base path for actuator
+      path-mapping:
+        health: healthcheck # Map /manage/health → /manage/healthcheck
+  endpoint:
+    health:
+      show-details: when_authorized # Show health details only if authenticated
+      show-components: when_authorized
+      group:
+        custom:
+          include: db,diskSpace,ping # Custom health group
+      probes:
+        enabled: true # Kubernetes readiness/liveness probes
+    loggers:
+      enabled: true
+    metrics:
+      enabled: true
+  health:
+    defaults:
+      enabled: true
+    redis:
+      enabled: true # Enable Redis health check
+    db:
+      enabled: true # Enable DB health check
+  tracing:
+    sampling:
+      probability: 0.1 # 10% trace sampling (OpenTelemetry)
+  server:
+    port: ${MANAGEMENT_PORT:9191} # Separate port for management endpoints
+  metrics:
+    tags:
+      application: ${spring.application.name} # Add app name tag
+      environment: ${ENV:local} # Add environment tag
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true # Track request histograms
+      percentiles:
+        http.server.requests: 0.5,0.75,0.95,0.99 # Track latency percentiles
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+# App-specific custom properties
+app:
+  api:
+    version: v1 # URL path version used by ApiVersioningConfig → final routes = /api/v1/...
+  security:
+    jwt:
+      audience: ${JWT_AUDIENCE:platform-api} # Expected JWT audience
+      client-id: ${JWT_CLIENT_ID:platform-api} # Expected JWT client ID
+  cors:
+    allowed-origins:
+      - ${UI_ORIGIN:http://localhost:4200} # Allow Angular UI requests
+    max-age: 3600 # Preflight cache duration
+  rate-limiting:
+    enabled: true # Enable rate limiting
+    requests-per-second: 100 # Allow 100 RPS
+  cache:
+    user-details-ttl: 300000 # Cache user details for 5 min
+  features:
+    enable-caching: true
+    enable-async-processing: true
+
+# Swagger / OpenAPI config
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: ${ENABLE_SWAGGER:true}
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    doc-expansion: none
+    filter: true
+    persist-authorization: true
+
+# ---------- Profile-specific overrides ----------
+---
+spring:
+  config:
+    activate:
+      on-profile: prod # Active when profile = prod
 
 logging:
   level:
-    root: INFO
-    org.springframework.web: INFO
-    org.hibernate.SQL: DEBUG
+    com.benjaminbatte.platform: INFO # Reduce logs in prod
+    org.hibernate.SQL: WARN
+    org.hibernate.type: WARN
+
+app:
+  rate-limiting:
+    requests-per-second: 50 # Stricter rate limit in prod
+
+springdoc:
+  swagger-ui:
+    enabled: false # Disable Swagger in prod for security
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev # Active when profile = dev
+
+logging:
+  level:
+    com.benjaminbatte.platform: DEBUG # Verbose app logs
+    org.hibernate.SQL: DEBUG # Show SQL queries
+    org.hibernate.type: TRACE # Show SQL params
+
+app:
+  rate-limiting:
+    enabled: false # Disable rate limiting in dev for convenience

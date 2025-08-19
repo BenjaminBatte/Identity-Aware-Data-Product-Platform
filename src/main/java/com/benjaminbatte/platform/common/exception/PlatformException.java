@@ -13,4 +13,8 @@ public abstract class PlatformException extends RuntimeException {
         super(message);
         this.errorCode = errorCode;
     }
+    protected PlatformException(String message, String errorCode, Throwable cause) {
+        super(message, cause);
+        this.errorCode = errorCode;
+    }
 }
